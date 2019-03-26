@@ -7,6 +7,36 @@ var Pizza_List = require('../Pizza_List');
 
 //HTML едемент куди будуть додаватися піци
 var $pizza_list = $("#pizza_list");
+var count;
+
+$(".filter-buttons").find("button").click(function () {
+    $(".hovered").removeClass("hovered");
+    $(this).addClass("hovered");
+});
+
+$(".all").click(function () {
+    showPizzaList(Pizza_List);
+    count=8;
+    $(".filter-amount").text(count);
+});
+$(".meat").click(function () {
+    filterPizza('М’ясна піца');
+});
+$(".pineapple").click(function () {
+    filterPizza('pineapple');
+});
+$(".mushrooms").click(function () {
+    filterPizza('mushroom');
+});
+$(".seafood").click(function () {
+    filterPizza('Морська піца');
+});
+$(".vega").click(function () {
+    $(".hovered").removeClass(".hovered");
+    $(this).addClass(".hovered");
+    filterPizza('Вега піца');
+});
+
 
 function showPizzaList(list) {
     //Очищаємо старі піци в кошику
@@ -19,10 +49,10 @@ function showPizzaList(list) {
 
         var $node = $(html_code);
 
-        $node.find(".buy-big").click(function(){
+        $node.find(".buy-big").click(function () {
             PizzaCart.addToCart(pizza, PizzaCart.PizzaSize.Big);
         });
-        $node.find(".buy-small").click(function(){
+        $node.find(".buy-small").click(function () {
             PizzaCart.addToCart(pizza, PizzaCart.PizzaSize.Small);
         });
 
@@ -33,19 +63,23 @@ function showPizzaList(list) {
 }
 
 function filterPizza(filter) {
+    count=0;
     //Масив куди потраплять піци які треба показати
     var pizza_shown = [];
-
-    Pizza_List.forEach(function(pizza){
+    Pizza_List.forEach(function (pizza) {
         //Якщо піка відповідає фільтру
-        //pizza_shown.push(pizza);
-
-        //TODO: зробити фільтри
+        if (pizza.type==filter||pizza.content[filter]) {
+            count++;
+            pizza_shown.push(pizza);
+        }
     });
 
     //Показати відфільтровані піци
     showPizzaList(pizza_shown);
+    $(".filter-amount").text(count);
 }
+
+
 
 function initialiseMenu() {
     //Показуємо усі піци

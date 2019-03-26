@@ -39,15 +39,15 @@
 <!--------------pizza cards---------------------->
 <div class="container cards col-xs-6 col-sm-8 col-md-8 col-lg-9">
     <div class="header">
-        <span class="all-pizzas">Усі піци<span class="badge cart-amount">8</span></span>
+        <span class="all-pizzas">Усі піци<span class="badge cart-amount filter-amount">8</span></span>
     </div>
     <div class="filter-buttons">
-        <button type="button" class="btn hovered">Усі</button>
-        <button type="button" class="btn">М'ясні</button>
-        <button type="button" class="btn">З ананасами</button>
-        <button type="button" class="btn">З грибами</button>
-        <button type="button" class="btn">З морепродуктами</button>
-        <button type="button" class="btn">Вега</button>
+        <button type="button" class="btn all hovered">Усі</button>
+        <button type="button" class="btn meat">М'ясні</button>
+        <button type="button" class="btn pineapple">З ананасами</button>
+        <button type="button" class="btn mushrooms">З грибами</button>
+        <button type="button" class="btn seafood">З морепродуктами</button>
+        <button type="button" class="btn vega">Вега</button>
 
     </div>
     <div class="pizza_list" id="pizza_list">
@@ -58,7 +58,7 @@
             <div class="caption"><h3>Міксовий поло</h3>
                 <span class="pizza-type">М'ясна піца</span>
 
-                <p class="description">Шинка, курка копчена, сир моцарела, ананаси, кукурудза, петрушка, соус томатний</p>
+                <p>Шинка, курка копчена, сир моцарела, ананаси, кукурудза, петрушка, соус томатний</p>
                 <div class="row">
                     <div class="size-weight col-xs-6">
                         <div>
@@ -180,11 +180,11 @@
             </div>
         </div>
         <div class="thumbnail pizza-card">
-            <img src="assets/images/pizza_4.jpg">
+            <img src="assets/images/pizza_3.jpg">
 
-            <div class="caption"><h3>Россо Густо</h3>
-                <span class="pizza-type">Морська піца</span>
-                <p>Ікра червона, лосось копчений, сир моцарела, оливкова олія, вершки</p>
+            <div class="caption"><h3>Маргарита</h3>
+                <span class="pizza-type">Сирна піца</span>
+                <p>Сир моцарела, помідори, базилік</p>
 
                 <div class="row">
                     <div class="size-weight col-xs-6">
@@ -195,7 +195,7 @@
                         <div><img src="assets/images/weight.svg">
                             <span>400</span>
                         </div>
-                        <span class="price">189</span>
+                        <span class="price">100</span>
                         <span>грн</span>
                         <a href="#" class="btn btn-buy">Купити</a>
                     </div>
@@ -205,9 +205,9 @@
                             <span>40</span>
                         </div>
                         <div><img src="assets/images/weight.svg">
-                            <span>700</span>
+                            <span>760</span>
                         </div>
-                        <span class="price">299</span>
+                        <span class="price">139</span>
                         <span>грн</span>
                         <a href="#" class="btn btn-buy">Купити</a>
                     </div>
@@ -228,17 +228,17 @@
 </div>
 </div>
 <!----------cart-------->
+<div class="cart-first-div col-xs-6 col-sm-4 col-md-4 col-lg-3">
+
+    <span class="cart-header">Замовлення<span class="badge cart-amount special-amount">0</span></span>
+
+    <span class="text-muted reset-order">Очистити замовлення</span>
+</div>
 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3" id="cart">
-    <div class="cart-first-div">
-
-        <span class="cart-header">Замовлення<span class="badge cart-amount">3</span></span>
-
-        <span class="text-muted reset-order">Очистити замовлення</span>
-    </div>
     <div class="orders">
         <!-------------------------->
         <div class="order">
-            <h4 class="order-name">BBQ (Мала)</h4>
+            <h4>BBQ (Мала)</h4>
             <img src="assets/images/size-icon.svg">
             <span class="cart-num">30</span>
             <img src="assets/images/weight.svg">
@@ -266,18 +266,18 @@
 
         </div>
         <div class="order">
-            <h4 class="order-name">Россо Густо (Мала)</h4>
+            <h4>BBQ (Мала)</h4>
             <img src="assets/images/size-icon.svg">
             <span class="cart-num">30</span>
             <img src="assets/images/weight.svg">
-            <span class="cart-num">400</span>
+            <span class="cart-num">460</span>
             <div class="row">
-                <span class="col-xs-3 cart-num">189грн</span>
+                <span class="col-xs-3 cart-num">556грн</span>
                 <div class="col-xs-4">
                     <button type="button" class="btn btn-danger btn-xs btn-round">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
-                    <span class="order-amount cart-num">1</span>
+                    <span class="order-amount cart-num">4</span>
                     <button type="button" class="btn btn-success btn-xs btn-round">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
@@ -288,24 +288,24 @@
                     </button>
                 </div>
                 <div class="col-xs-4 pizza-img">
-                    <img src="assets/images/pizza_4.jpg">
+                    <img src="assets/images/pizza_2.jpg">
                 </div>
             </div>
 
         </div>
         <div class="order">
-            <h4 class="order-name">Міксовий поло (Велика)</h4>
+            <h4>BBQ (Мала)</h4>
             <img src="assets/images/size-icon.svg">
-            <span class="cart-num">40</span>
+            <span class="cart-num">30</span>
             <img src="assets/images/weight.svg">
-            <span class="cart-num">780</span>
+            <span class="cart-num">460</span>
             <div class="row">
-                <span class="col-xs-3 cart-num">179грн</span>
+                <span class="col-xs-3 cart-num">556грн</span>
                 <div class="col-xs-4">
                     <button type="button" class="btn btn-danger btn-xs btn-round">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
-                    <span class="order-amount cart-num">1</span>
+                    <span class="order-amount cart-num">4</span>
                     <button type="button" class="btn btn-success btn-xs btn-round">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
@@ -316,19 +316,17 @@
                     </button>
                 </div>
                 <div class="col-xs-4 pizza-img">
-                    <img src="assets/images/pizza_1.jpg">
+                    <img src="assets/images/pizza_2.jpg">
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="footer col-xs-6 col-sm-4 col-md-4 col-lg-3 bg-default">
-        <span class="order-price-text">Сума замовлення</span>
-        <span class="order-price">924 грн</span>
-        <div class="text-center"><button type="button" class="btn order-btn">Замовити</button></div>
-
-
-    </div>
+</div>
+<div class="footer col-xs-6 col-sm-4 col-md-4 col-lg-3 bg-default">
+    <span class="order-price-text">Сума замовлення</span>
+    <span class="order-price">0 грн</span>
+    <div class="text-center"><button type="button" class="btn order-btn">Замовити</button></div>
 </div>
 
 
@@ -342,6 +340,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <!--Own JavaScript -->
-<!--<script type="text/javascript"  src="assets/js/main.js"> </script>-->
+<script src="assets/js/main.js"> </script>
 </body>
 </html>

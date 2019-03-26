@@ -2,6 +2,7 @@
  * Created by chaika on 02.02.16.
  */
 var Templates = require('../Templates');
+var Storage = require('../storage');
 
 //Перелік розмірів піци
 var PizzaSize = {
@@ -14,7 +15,7 @@ var Cart = [];
 
 //HTML едемент куди будуть додаватися піци
 var $cart = $("#cart");
-var $cartAmount = $(".cart-amount");
+var $cartAmount = $(".special-amount");
 var cartAmount = 0;
 var $orderPrice = $(".order-price");
 var orderPrice = 0;
@@ -30,7 +31,7 @@ function addToCart(pizza, size) {
         Cart.push({
             pizza: pizza,
             size: size,
-            quantity: 1,
+            quantity: 1
         });
         orderPrice+=pizza[size].price;
     }
@@ -42,7 +43,6 @@ function addToCart(pizza, size) {
 
 function removeFromCart(cart_item) {
     //Видалити піцу з кошика
-    //TODO: треба зробити
     var ind = Cart.indexOf(cart_item);
     if (ind>-1)
         Cart.splice(ind, 1);
@@ -55,7 +55,12 @@ function removeFromCart(cart_item) {
 function initialiseCart() {
     //Фукнція віпрацьвуватиме при завантаженні сторінки
     //Тут можна наприклад, зчитати вміст корзини який збережено в Local Storage то показати його
-    //TODO: ...
+    var savedCart = Storage.get('cart');
+    if(savedCart){
+        Cart = savedCart;
+        orderPrice = Storage.get('totalPrice');
+        cartAmount = Storage.get('orderAmount');
+    }
 
     updateCart();
 }
@@ -76,14 +81,14 @@ function updateCart() {
     //Онволення однієї піци
     function showOnePizzaInCart(cart_item) {
         var html_code = Templates.PizzaCart_OneItem(cart_item);
-
         var $node = $(html_code);
+        var price = parseInt($node.find('.price').text());
 
         $node.find(".plus").click(function () {
             //Збільшуємо кількість замовлених піц
             cart_item.quantity += 1;
             cartAmount++;
-
+            orderPrice+=price;
 
             //Оновлюємо відображення
             updateCart();
@@ -95,12 +100,13 @@ function updateCart() {
             else {
                 cart_item.quantity -= 1;
                 cartAmount--;
-
             }
+            orderPrice-=price;
             //Оновлюємо відображення
             updateCart();
         });
         $node.find(".del").click(function () {
+                orderPrice-=cart_item.quantity*price;
                 removeFromCart(cart_item);
             //Оновлюємо відображення
             updateCart();
@@ -108,6 +114,7 @@ function updateCart() {
         $(".reset-order").click(function () {
             Cart.length=0;
             cartAmount=0;
+            orderPrice=0;
 
             updateCart();
         });
@@ -116,7 +123,9 @@ function updateCart() {
     }
 
     Cart.forEach(showOnePizzaInCart);
-
+    Storage.set('cart', Cart);
+    Storage.set('totalPrice', orderPrice);
+    Storage.set('orderAmount', cartAmount);
 }
 
 
