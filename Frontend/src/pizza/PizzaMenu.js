@@ -12,6 +12,7 @@ function showPizzaList(list) {
     //Очищаємо старі піци в кошику
     $pizza_list.html("");
 
+
     //Онволення однієї піци
     function showOnePizza(pizza) {
         var html_code = Templates.PizzaMenu_OneItem({pizza: pizza});
@@ -48,7 +49,7 @@ function filterPizza(filter) {
 
 function initialiseMenu() {
     //Показуємо усі піци
-    showPizzaList(Pizza_List)
+    showPizzaList(Pizza_List);
 }
 
 exports.filterPizza = filterPizza;

@@ -50,7 +50,7 @@
         <button type="button" class="btn">Вега</button>
 
     </div>
-    <div class="pizza_list">
+    <div class="pizza_list" id="pizza_list">
 
         <div class="thumbnail pizza-card">
             <img src="assets/images/pizza_1.jpg">
@@ -228,13 +228,13 @@
 </div>
 </div>
 <!----------cart-------->
+<div class="cart-first-div col-xs-6 col-sm-4 col-md-4 col-lg-3">
+
+    <span class="cart-header">Замовлення<span class="badge cart-amount">0</span></span>
+
+    <span class="text-muted reset-order">Очистити замовлення</span>
+</div>
 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3" id="cart">
-    <div class="cart-first-div">
-
-        <span class="cart-header">Замовлення<span class="badge cart-amount">3</span></span>
-
-        <span class="text-muted reset-order">Очистити замовлення</span>
-    </div>
     <div class="orders">
         <!-------------------------->
         <div class="order">
@@ -322,13 +322,11 @@
         </div>
 
     </div>
-    <div class="footer col-xs-6 col-sm-4 col-md-4 col-lg-3 bg-default">
-        <span class="order-price-text">Сума замовлення</span>
-        <span class="order-price">924 грн</span>
-        <div class="text-center"><button type="button" class="btn order-btn">Замовити</button></div>
-
-
-    </div>
+</div>
+<div class="footer col-xs-6 col-sm-4 col-md-4 col-lg-3 bg-default">
+    <span class="order-price-text">Сума замовлення</span>
+    <span class="order-price">0 грн</span>
+    <div class="text-center"><button type="button" class="btn order-btn">Замовити</button></div>
 </div>
 
 
@@ -342,6 +340,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <!--Own JavaScript -->
-<!--<script type="text/javascript"  src="assets/js/main.js"> </script>-->
+<script src="assets/js/main.js"> </script>
 </body>
 </html>
