@@ -202,7 +202,6 @@ $(function(){
     PizzaCart.initialiseCart();
     PizzaMenu.initialiseMenu();
 
-
 });
 },{"./Pizza_List":1,"./pizza/PizzaCart":4,"./pizza/PizzaMenu":5}],4:[function(require,module,exports){
 /**
@@ -221,17 +220,28 @@ var Cart = [];
 
 //HTML едемент куди будуть додаватися піци
 var $cart = $("#cart");
-
+var $cartAmount = $(".cart-amount");
+var cartAmount = 0;
+var $orderPrice = $(".order-price");
+var orderPrice = 0;
 function addToCart(pizza, size) {
     //Додавання однієї піци в кошик покупок
-
+    var elem = Cart.find(val => val.pizza==pizza&&val.size==size);
+    if (elem) {
+        elem.quantity++;
+         orderPrice += elem.pizza[size].price;
+    }
     //Приклад реалізації, можна робити будь-яким іншим способом
-    Cart.push({
-        pizza: pizza,
-        size: size,
-        quantity: 1
-    });
-
+    else {
+        Cart.push({
+            pizza: pizza,
+            size: size,
+            quantity: 1,
+        });
+        orderPrice+=pizza[size].price;
+    }
+    cartAmount++;
+    $cartAmount.text(cartAmount);
     //Оновити вміст кошика на сторінці
     updateCart();
 }
@@ -239,6 +249,10 @@ function addToCart(pizza, size) {
 function removeFromCart(cart_item) {
     //Видалити піцу з кошика
     //TODO: треба зробити
+    var ind = Cart.indexOf(cart_item);
+    if (ind>-1)
+        Cart.splice(ind, 1);
+    cartAmount-=cart_item.quantity;
 
     //Після видалення оновити відображення
     updateCart();
@@ -260,7 +274,8 @@ function getPizzaInCart() {
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
     //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
-
+    $orderPrice.text(orderPrice + 'грн');
+    $cartAmount.text(cartAmount);
     //Очищаємо старі піци в кошику
     $cart.html("");
 
@@ -270,11 +285,36 @@ function updateCart() {
 
         var $node = $(html_code);
 
-        $node.find(".plus").click(function(){
+        $node.find(".plus").click(function () {
             //Збільшуємо кількість замовлених піц
             cart_item.quantity += 1;
+            cartAmount++;
+
 
             //Оновлюємо відображення
+            updateCart();
+        });
+        $node.find(".minus").click(function () {
+            if (cart_item.quantity==1) {
+                removeFromCart(cart_item);
+            }
+            else {
+                cart_item.quantity -= 1;
+                cartAmount--;
+
+            }
+            //Оновлюємо відображення
+            updateCart();
+        });
+        $node.find(".del").click(function () {
+                removeFromCart(cart_item);
+            //Оновлюємо відображення
+            updateCart();
+        });
+        $(".reset-order").click(function () {
+            Cart.length=0;
+            cartAmount=0;
+
             updateCart();
         });
 
@@ -284,6 +324,7 @@ function updateCart() {
     Cart.forEach(showOnePizzaInCart);
 
 }
+
 
 exports.removeFromCart = removeFromCart;
 exports.addToCart = addToCart;
@@ -1460,29 +1501,34 @@ exports.cache = {
 
 },{}],9:[function(require,module,exports){
 module.exports={
-  "_from": "ejs@^2.4.1",
+  "_args": [
+    [
+      "ejs@2.6.1",
+      "C:\\Users\\Admin\\JS-Pizza"
+    ]
+  ],
+  "_from": "ejs@2.6.1",
   "_id": "ejs@2.6.1",
   "_inBundle": false,
   "_integrity": "sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==",
   "_location": "/ejs",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "ejs@^2.4.1",
+    "raw": "ejs@2.6.1",
     "name": "ejs",
     "escapedName": "ejs",
-    "rawSpec": "^2.4.1",
+    "rawSpec": "2.6.1",
     "saveSpec": null,
-    "fetchSpec": "^2.4.1"
+    "fetchSpec": "2.6.1"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.6.1.tgz",
-  "_shasum": "498ec0d495655abc6f23cd61868d926464071aa0",
-  "_spec": "ejs@^2.4.1",
-  "_where": "C:\\Users\\Sofiya Gak\\Desktop\\Git\\JS-Pizza",
+  "_spec": "2.6.1",
+  "_where": "C:\\Users\\Admin\\JS-Pizza",
   "author": {
     "name": "Matthew Eernisse",
     "email": "mde@fleegix.org",
@@ -1491,7 +1537,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/mde/ejs/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Timothy Gu",
@@ -1500,7 +1545,6 @@ module.exports={
     }
   ],
   "dependencies": {},
-  "deprecated": false,
   "description": "Embedded JavaScript templates",
   "devDependencies": {
     "browserify": "^13.1.1",
