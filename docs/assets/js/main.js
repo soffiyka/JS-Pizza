@@ -353,6 +353,7 @@ var Pizza_List = require('../Pizza_List');
 //HTML едемент куди будуть додаватися піци
 var $pizza_list = $("#pizza_list");
 var count;
+var $filterName = $(".filter-name");
 
 $(".filter-buttons").find("button").click(function () {
     $(".hovered").removeClass("hovered");
@@ -362,6 +363,7 @@ $(".filter-buttons").find("button").click(function () {
 $(".all").click(function () {
     showPizzaList(Pizza_List);
     count=8;
+    $filterName.text("Усі");
     $(".filter-amount").text(count);
 });
 $(".meat").click(function () {
@@ -369,9 +371,11 @@ $(".meat").click(function () {
 });
 $(".pineapple").click(function () {
     filterPizza('pineapple');
+    $filterName.text("З ананасами");
 });
 $(".mushrooms").click(function () {
     filterPizza('mushroom');
+    $filterName.text("З грибами");
 });
 $(".seafood").click(function () {
     filterPizza('Морська піца');
@@ -421,6 +425,7 @@ function filterPizza(filter) {
 
     //Показати відфільтровані піци
     showPizzaList(pizza_shown);
+    $filterName.text(filter);
     $(".filter-amount").text(count);
 }
 
